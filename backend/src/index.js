@@ -46,14 +46,12 @@ import errorHandler from "./middlewares/error.middleware.js";
 
 app.use(errorHandler);
 
-if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/frontend/build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-  });
-}
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+});
 
 // connect to the database
 import connectDB from "./db/index.js";
