@@ -10,6 +10,7 @@ const Signup = () => {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -21,8 +22,8 @@ const Signup = () => {
 
   const onSubmit = (data) => {
     signup(data);
-    if (success) {
-      navigate("/login", { replace: true });
+    if (!isSigningUp) {
+      reset();
     }
   };
   return (
